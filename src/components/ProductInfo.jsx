@@ -8,7 +8,7 @@ class ProductInfo extends Component {
       <div>
         { productList.length === 0
           ? 'Nenhum produto foi encontrado'
-          : productList.map((product) => (
+          : productList.results.map((product) => (
             <div data-testid="product" key={ product.id }>
               <p>{ product.title }</p>
               <img src={ product.thumbnail } alt={ product.title } />
