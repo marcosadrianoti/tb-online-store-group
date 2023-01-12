@@ -8,7 +8,6 @@ class Home extends Component {
   state = {
     product: '',
     productList: [],
-
   };
 
   inputText = ({ target }) => {
@@ -24,9 +23,16 @@ class Home extends Component {
     this.setState({ productList: dataProduct });
   };
 
+  fetchProductByCategory = async (event) => {
+    const { target } = event;
+    const categorieSelected = target.value;
+
+    const dataProduct = await getProductsFromCategoryAndQuery(categorieSelected, '');
+    this.setState({ productList: dataProduct });
+  };
+
   render() {
-    const { product } = this.state;
-    const { productList } = this.state;
+    const { product, productList } = this.state;
     return (
       <div>
         <input
@@ -55,7 +61,9 @@ class Home extends Component {
             Carrinho de Compras
           </Link>
         </button>
-        <Categories />
+        <Categories
+          fetchProductByCategory={ this.fetchProductByCategory }
+        />
         <ProductInfo
           productList={ productList }
         />
