@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { getCategories } from '../services/api';
 
@@ -17,6 +18,7 @@ class Categories extends Component {
 
   render() {
     const { categories } = this.state;
+    const { fetchProductByCategory } = this.props;
     return (
       <div>
         <ul>
@@ -30,7 +32,8 @@ class Categories extends Component {
                     type="radio"
                     name="categorie"
                     id={ categorie.name }
-                    value={ categorie.name }
+                    value={ categorie.id }
+                    onClick={ fetchProductByCategory }
                   />
                 </label>
               </li>
@@ -40,4 +43,9 @@ class Categories extends Component {
     );
   }
 }
+
+Categories.propTypes = {
+  fetchProductByCategory: PropTypes.func.isRequired,
+};
+
 export default Categories;
