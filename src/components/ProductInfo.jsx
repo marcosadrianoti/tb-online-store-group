@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 class ProductInfo extends Component {
   render() {
-    const { productList } = this.props;
+    const { productList, addToCart } = this.props;
     return (
       <div>
         { productList.length === 0
@@ -13,6 +13,14 @@ class ProductInfo extends Component {
               <p>{ product.title }</p>
               <img src={ product.thumbnail } alt={ product.title } />
               <p>{ product.price }</p>
+              <button
+                id={ product.id }
+                type="button"
+                data-testid="product-add-to-cart"
+                onClick={ addToCart }
+              >
+                Adicionar ao carrinho
+              </button>
             </div>
           ))}
       </div>
@@ -22,6 +30,7 @@ class ProductInfo extends Component {
 
 ProductInfo.propTypes = {
   productList: PropTypes.arrayOf({}).isRequired,
+  addToCart: PropTypes.func.isRequired,
 };
 
 export default ProductInfo;
