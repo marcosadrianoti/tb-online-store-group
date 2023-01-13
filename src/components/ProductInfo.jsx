@@ -26,10 +26,6 @@ class ProductInfo extends Component {
               >
                 Adicionar ao carrinho
               </button>
-                <p>{ product.title }</p>
-                <img src={ product.thumbnail } alt={ product.title } />
-                <p>{ product.price }</p>
-              </Link>
             </div>
           ))}
       </div>
