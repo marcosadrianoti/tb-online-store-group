@@ -12,6 +12,7 @@ class ProductInfo extends Component {
           : productList.results.map((product) => (
             <div data-testid="product" key={ product.id }>
               <Link to={ `/details/${product.id}` } data-testid="product-detail-link">
+
                 <p>{product.title}</p>
                 <img src={ product.thumbnail } alt={ product.title } />
                 <p>{product.price}</p>
@@ -25,6 +26,10 @@ class ProductInfo extends Component {
               >
                 Adicionar ao carrinho
               </button>
+                <p>{ product.title }</p>
+                <img src={ product.thumbnail } alt={ product.title } />
+                <p>{ product.price }</p>
+              </Link>
             </div>
           ))}
       </div>
