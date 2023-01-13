@@ -5,12 +5,12 @@ class ShoppingCart extends React.Component {
     cartlist: [],
   };
 
-  async componentDidMount() {
-    await this.teste();
+  componentDidMount() {
+    this.teste();
   }
 
-  teste = async () => {
-    const getCartList = JSON.parse(localStorage.getItem('cartlist'));
+  teste = () => {
+    const getCartList = JSON.parse(localStorage.getItem('cartlist')) ?? [];
     this.setState({ cartlist: getCartList });
   };
 
@@ -40,6 +40,7 @@ class ShoppingCart extends React.Component {
 
   render() {
     const { cartlist } = this.state;
+    console.log(cartlist);
     return (
       <div>
         {cartlist.length === 0 ? (
