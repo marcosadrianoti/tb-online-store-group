@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+
 import { Link } from 'react-router-dom';
 import { getProductById } from '../services/api';
 
@@ -20,7 +21,6 @@ class Details extends Component {
 
   render() {
     const { product } = this.state;
-    console.log(product.attributes);
     return (
       <div>
         <h3 data-testid="product-detail-name">{product.title}</h3>

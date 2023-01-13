@@ -31,6 +31,20 @@ class Home extends Component {
     this.setState({ productList: dataProduct });
   };
 
+  addToCart = async (event) => {
+    const { target: { value } } = event;
+    const cartlist = localStorage.getItem('cartlist');
+    if (cartlist) {
+      const productsId = JSON.parse(cartlist);
+      productsId.push(value);
+      localStorage.setItem('cartlist', JSON.stringify(productsId));
+    } else {
+      const newcart = [];
+      newcart.push(value);
+      localStorage.setItem('cartlist', JSON.stringify(newcart));
+    }
+  };
+
   render() {
     const { product, productList } = this.state;
     return (
@@ -66,6 +80,7 @@ class Home extends Component {
         />
         <ProductInfo
           productList={ productList }
+          addToCart={ this.addToCart }
         />
       </div>
     );
