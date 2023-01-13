@@ -19,10 +19,9 @@ class ProductInfo extends Component {
               </Link>
               <button
                 id={ product.id }
-                value={ JSON.stringify(product) }
                 type="button"
                 data-testid="product-add-to-cart"
-                onClick={ addToCart }
+                onClick={ () => addToCart(product) }
               >
                 Adicionar ao carrinho
               </button>
