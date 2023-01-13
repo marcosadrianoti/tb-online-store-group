@@ -32,16 +32,15 @@ class Home extends Component {
   };
 
   addToCart = async (event) => {
-    const { target: { id } } = event;
+    const { target: { value } } = event;
     const cartlist = localStorage.getItem('cartlist');
-
     if (cartlist) {
       const productsId = JSON.parse(cartlist);
-      productsId.push(id);
+      productsId.push(value);
       localStorage.setItem('cartlist', JSON.stringify(productsId));
     } else {
       const newcart = [];
-      newcart.push(id);
+      newcart.push(value);
       localStorage.setItem('cartlist', JSON.stringify(newcart));
     }
   };

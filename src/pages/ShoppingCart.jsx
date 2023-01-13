@@ -1,5 +1,4 @@
 import React from 'react';
-import { getProductById } from '../services/api';
 
 class ShoppingCart extends React.Component {
   state = {
@@ -7,21 +6,22 @@ class ShoppingCart extends React.Component {
   };
 
   async componentDidMount() {
-    const getCartList = JSON.parse(localStorage.getItem('cartlist'));
-    console.log(getCartList);
-    const getProductsInfo = await getCartList.map(async (id) => {
-      const request = await getProductById(id);
-      return request;
-    });
-    this.setState({ cartlist: getProductsInfo });
-    console.log(getProductsInfo);
+    this.teste();
   }
+
+  teste = async () => {
+    const getCartList = JSON.parse(localStorage.getItem('cartlist'));
+    if (getCartList) {
+      const productsInfo = getCartList.map((list) => JSON.parse(list));
+      this.setState({ cartlist: productsInfo });
+    }
+  };
 
   render() {
     const { cartlist } = this.state;
     return (
       <div>
-        {!cartlist.length ? (
+        {cartlist.length === 0 ? (
           <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
         ) : (
           <div>

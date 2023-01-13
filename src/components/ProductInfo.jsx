@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 
 class ProductInfo extends Component {
   render() {
@@ -15,6 +15,7 @@ class ProductInfo extends Component {
               <p>{ product.price }</p>
               <button
                 id={ product.id }
+                value={ JSON.stringify(product) }
                 type="button"
                 data-testid="product-add-to-cart"
                 onClick={ addToCart }
