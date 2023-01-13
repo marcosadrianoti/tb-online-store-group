@@ -19,6 +19,20 @@ class Details extends Component {
     this.setState({ product: dataProduct });
   };
 
+  addToCart = async (event) => {
+    const { target: { value } } = event;
+    const cartlist = localStorage.getItem('cartlist');
+    if (cartlist) {
+      const productsId = JSON.parse(cartlist);
+      productsId.push(value);
+      localStorage.setItem('cartlist', JSON.stringify(productsId));
+    } else {
+      const newcart = [];
+      newcart.push(value);
+      localStorage.setItem('cartlist', JSON.stringify(newcart));
+    }
+  };
+
   render() {
     const { product } = this.state;
     return (
@@ -30,6 +44,15 @@ class Details extends Component {
           data-testid="product-detail-image"
         />
         <h4 data-testid="product-detail-price">{product.price}</h4>
+        <button
+          id={ product.id }
+          value={ JSON.stringify(product) }
+          type="button"
+          data-testid="product-detail-add-to-cart"
+          onClick={ this.addToCart }
+        >
+          Adicionar ao carrinho
+        </button>
         <button type="button">
           <Link to="/shopping-cart" data-testid="shopping-cart-button">
             Carrinho de Compras
