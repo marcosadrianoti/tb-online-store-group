@@ -31,17 +31,21 @@ class Home extends Component {
     this.setState({ productList: dataProduct });
   };
 
-  addToCart = async (event) => {
-    const { target: { value } } = event;
+  addToCart = (newProduct) => {
     const cartlist = localStorage.getItem('cartlist');
     if (cartlist) {
-      const productsId = JSON.parse(cartlist);
-      productsId.push(value);
-      localStorage.setItem('cartlist', JSON.stringify(productsId));
+      const products = JSON.parse(cartlist);
+      if (products.some((product) => product.id === newProduct.id)) {
+        const index = products.findIndex((product) => product.id === newProduct.id);
+        products[index].productQuantity += 1;
+        localStorage.setItem('cartlist', JSON.stringify(products));
+      } else {
+        newProduct.productQuantity = 1;
+        localStorage.setItem('cartlist', JSON.stringify([...products, newProduct]));
+      }
     } else {
-      const newcart = [];
-      newcart.push(value);
-      localStorage.setItem('cartlist', JSON.stringify(newcart));
+      newProduct.productQuantity = 1;
+      localStorage.setItem('cartlist', [JSON.stringify([newProduct])]);
     }
   };
 
