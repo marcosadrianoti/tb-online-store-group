@@ -14,9 +14,10 @@ class ShoppingCart extends React.Component {
     this.setState({ cartlist: getCartList });
   };
 
-  increaseQuantity = (index) => {
+  increaseQuantity = (index, availableQuantity) => {
     const { cartlist } = this.state;
     const temp = [...cartlist];
+    if (temp[index].productQuantity === availableQuantity) return;
     temp[index].productQuantity += 1;
     this.setState({ cartlist: [...temp] });
     localStorage.setItem('cartlist', JSON.stringify(temp));
@@ -66,7 +67,10 @@ class ShoppingCart extends React.Component {
                 <button
                   type="button"
                   data-testid="product-increase-quantity"
-                  onClick={ () => this.increaseQuantity(index) }
+                  onClick={ () => this.increaseQuantity(
+                    index,
+                    cartProduct.available_quantity,
+                  ) }
                 >
                   +
 
