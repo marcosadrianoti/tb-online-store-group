@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class ShoppingCart extends React.Component {
   state = {
@@ -50,7 +51,7 @@ class ShoppingCart extends React.Component {
             {cartlist.map((cartProduct, index) => (
               <div key={ cartProduct.id }>
                 <p data-testid="shopping-cart-product-name">{cartProduct.title}</p>
-                <p>{cartProduct.price}</p>
+                <p>{(cartProduct.productQuantity * cartProduct.price).toFixed(2)}</p>
                 <button
                   type="button"
                   data-testid="product-decrease-quantity"
@@ -82,7 +83,11 @@ class ShoppingCart extends React.Component {
                 </button>
               </div>
             ))}
-
+            <button type="button">
+              <Link to="/checkout" data-testid="checkout-products">
+                Finalizar compra
+              </Link>
+            </button>
           </div>
         )}
 
