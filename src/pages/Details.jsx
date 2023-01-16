@@ -18,6 +18,7 @@ class Details extends Component {
     rating: '',
     text: '',
     isValid: true,
+    totalItemsCart: JSON.parse(localStorage.getItem('totalItemsCart')) ?? 0,
     // isDisabled: true,
   };
 
@@ -47,6 +48,17 @@ class Details extends Component {
       newProduct.productQuantity = 1;
       localStorage.setItem('cartlist', [JSON.stringify([newProduct])]);
     }
+    this.getTotalItemsCart();
+  };
+
+  getTotalItemsCart = () => {
+    const getCartList = JSON.parse(localStorage.getItem('cartlist')) ?? [];
+    let totalItems = 0;
+    getCartList.forEach((productCart) => {
+      totalItems += productCart.productQuantity;
+    });
+    localStorage.setItem('totalItemsCart', totalItems);
+    this.setState({ totalItemsCart: totalItems });
   };
 
   validate = () => {
@@ -98,7 +110,7 @@ class Details extends Component {
   };
 
   render() {
-    const { product, ratingIndex, email, text, isValid } = this.state;
+    const { product, ratingIndex, email, text, isValid, totalItemsCart } = this.state;
     const { match: { params: { id } } } = this.props;
     const getRatings = localStorage.getItem(id);
     const ratings = JSON.parse(getRatings);
@@ -122,6 +134,8 @@ class Details extends Component {
         <button type="button">
           <Link to="/shopping-cart" data-testid="shopping-cart-button">
             Carrinho de Compras
+            <br />
+            <span data-testid="shopping-cart-size">{ totalItemsCart }</span>
           </Link>
         </button>
         <div>
