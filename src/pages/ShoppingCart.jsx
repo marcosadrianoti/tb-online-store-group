@@ -21,6 +21,7 @@ class ShoppingCart extends React.Component {
     temp[index].productQuantity += 1;
     this.setState({ cartlist: [...temp] });
     localStorage.setItem('cartlist', JSON.stringify(temp));
+    this.getTotalItemsCart();
   };
 
   decreaseQuantity = (index) => {
@@ -30,6 +31,7 @@ class ShoppingCart extends React.Component {
     temp[index].productQuantity -= 1;
     this.setState({ cartlist: [...temp] });
     localStorage.setItem('cartlist', JSON.stringify(temp));
+    this.getTotalItemsCart();
   };
 
   removeItem = (id) => {
@@ -37,6 +39,16 @@ class ShoppingCart extends React.Component {
     const temp = cartlist.filter((productCart) => productCart.id !== id);
     this.setState({ cartlist: [...temp] });
     localStorage.setItem('cartlist', JSON.stringify(temp));
+    this.getTotalItemsCart();
+  };
+
+  getTotalItemsCart = () => {
+    const getCartList = JSON.parse(localStorage.getItem('cartlist')) ?? [];
+    let totalItems = 0;
+    getCartList.forEach((productCart) => {
+      totalItems += productCart.productQuantity;
+    });
+    localStorage.setItem('totalItemsCart', totalItems);
   };
 
   render() {
