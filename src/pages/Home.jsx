@@ -8,6 +8,7 @@ class Home extends Component {
   state = {
     product: '',
     productList: [],
+    totalItemsCart: JSON.parse(localStorage.getItem('totalItemsCart')) ?? 0,
   };
 
   inputText = ({ target }) => {
@@ -47,10 +48,21 @@ class Home extends Component {
       newProduct.productQuantity = 1;
       localStorage.setItem('cartlist', [JSON.stringify([newProduct])]);
     }
+    this.getTotalItemsCart();
+  };
+
+  getTotalItemsCart = () => {
+    const getCartList = JSON.parse(localStorage.getItem('cartlist')) ?? [];
+    let totalItems = 0;
+    getCartList.forEach((productCart) => {
+      totalItems += productCart.productQuantity;
+    });
+    localStorage.setItem('totalItemsCart', totalItems);
+    this.setState({ totalItemsCart: totalItems });
   };
 
   render() {
-    const { product, productList } = this.state;
+    const { product, productList, totalItemsCart } = this.state;
     return (
       <div>
         <input
@@ -77,7 +89,9 @@ class Home extends Component {
         <button type="button">
           <Link to="/shopping-cart" data-testid="shopping-cart-button">
             Carrinho de Compras
+            <br />
           </Link>
+          <span data-testid="shopping-cart-size">{ totalItemsCart }</span>
         </button>
         <Categories
           fetchProductByCategory={ this.fetchProductByCategory }

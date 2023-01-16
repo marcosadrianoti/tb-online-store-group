@@ -5,7 +5,7 @@ class ShoppingCart extends React.Component {
     cartlist: [],
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     this.teste();
   }
 
@@ -40,7 +40,6 @@ class ShoppingCart extends React.Component {
 
   render() {
     const { cartlist } = this.state;
-    console.log(cartlist);
     return (
       <div>
         {cartlist.length === 0 ? (
