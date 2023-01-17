@@ -5,9 +5,10 @@ import { Link } from 'react-router-dom';
 class ProductInfo extends Component {
   render() {
     const { productList, addToCart } = this.props;
+    console.log(productList);
     return (
       <div>
-        {productList.length === 0
+        {productList.results === undefined
           ? 'Nenhum produto foi encontrado'
           : productList.results.map((product) => (
             <div data-testid="product" key={ product.id }>
@@ -16,8 +17,6 @@ class ProductInfo extends Component {
                 <p>{product.title}</p>
                 <img src={ product.thumbnail } alt={ product.title } />
                 <p>{product.price}</p>
-                {product.shipping.free_shipping
-                && <p data-testid="free-shipping">Frete grátis</p>}
               </Link>
               <button
                 id={ product.id }
@@ -35,7 +34,9 @@ class ProductInfo extends Component {
 }
 
 ProductInfo.propTypes = {
-  productList: PropTypes.arrayOf({}).isRequired,
+  productList: PropTypes.shape({
+    results: PropTypes.arrayOf(PropTypes.shape({})),
+  }).isRequired,
   addToCart: PropTypes.func.isRequired,
 };
 
