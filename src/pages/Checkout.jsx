@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Error from '../components/Error';
-import stateListHelper from '../helpers/stateListHelper';
 
 class Checkout extends Component {
   state = {
@@ -14,9 +14,7 @@ class Checkout extends Component {
     number: '',
     city: '',
     cartlist: [],
-    state: '',
     payment: '',
-    statesList: stateListHelper,
     isValidate: true,
   };
 
@@ -50,26 +48,19 @@ class Checkout extends Component {
 
   validateInfo = () => {
     const {
-      statesList,
       name,
       cpf,
       email,
       tel,
       address,
-      complemento,
-      number,
       cep,
-      city,
       payment,
-      state,
     } = this.state;
     const { history: { push } } = this.props;
 
-    if (statesList.length !== 0
-      && name.length !== 0 && cpf.length !== 0 && email.length !== 0
-      && tel.length !== 0 && address.length !== 0 && complemento.length !== 0
-      && number.length !== 0 && cep.length !== 0 && city.length !== 0
-      && payment.length !== 0 && state.length !== 0) {
+    if (name.length !== 0 && cpf.length !== 0 && email.length !== 0
+      && tel.length !== 0 && address.length !== 0 && cep.length !== 0
+      && payment.length !== 0) {
       push('/');
       localStorage.removeItem('cartlist');
     } else {
@@ -80,7 +71,6 @@ class Checkout extends Component {
   render() {
     const {
       cartlist,
-      statesList,
       name,
       cpf,
       email,
@@ -176,11 +166,6 @@ class Checkout extends Component {
             placeholder="cidade"
             name="city"
           />
-          <select onChange={ this.handleChange } name="state">
-            {statesList.map((state) => (
-              <option value={ state } key={ state }>{ state }</option>
-            ))}
-          </select>
         </fieldset>
         <div>
           <p>Método de pagamento:</p>
@@ -241,5 +226,11 @@ class Checkout extends Component {
     );
   }
 }
+
+Checkout.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default Checkout;
