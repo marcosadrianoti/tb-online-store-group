@@ -7,7 +7,7 @@ class ProductInfo extends Component {
     const { productList, addToCart } = this.props;
     return (
       <div>
-        {productList.length === 0
+        {productList.results === undefined
           ? 'Nenhum produto foi encontrado'
           : productList.results.map((product) => (
             <div data-testid="product" key={ product.id }>
@@ -35,7 +35,9 @@ class ProductInfo extends Component {
 }
 
 ProductInfo.propTypes = {
-  productList: PropTypes.arrayOf({}).isRequired,
+  productList: PropTypes.shape({
+    results: PropTypes.arrayOf(PropTypes.shape({})),
+  }).isRequired,
   addToCart: PropTypes.func.isRequired,
 };
 

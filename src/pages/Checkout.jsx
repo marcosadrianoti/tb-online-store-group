@@ -46,6 +46,15 @@ class Checkout extends Component {
     });
   };
 
+  getTotalItemsCart = () => {
+    const getCartList = JSON.parse(localStorage.getItem('cartlist')) ?? [];
+    let totalItems = 0;
+    getCartList.forEach((productCart) => {
+      totalItems += productCart.productQuantity;
+    });
+    localStorage.setItem('totalItemsCart', totalItems);
+  };
+
   validateInfo = () => {
     const {
       name,
@@ -63,6 +72,7 @@ class Checkout extends Component {
       && payment.length !== 0) {
       push('/');
       localStorage.removeItem('cartlist');
+      this.getTotalItemsCart();
     } else {
       this.setState({ isValidate: false });
     }

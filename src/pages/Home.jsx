@@ -7,7 +7,7 @@ import { getProductsFromCategoryAndQuery } from '../services/api';
 class Home extends Component {
   state = {
     product: '',
-    productList: [],
+    productList: {},
     totalItemsCart: JSON.parse(localStorage.getItem('totalItemsCart')) ?? 0,
   };
 
