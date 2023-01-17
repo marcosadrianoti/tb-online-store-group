@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 class ProductInfo extends Component {
   render() {
     const { productList, addToCart } = this.props;
-    console.log(productList);
     return (
       <div>
         {productList.results === undefined
