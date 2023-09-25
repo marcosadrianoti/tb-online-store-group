@@ -44,13 +44,13 @@ cd meu-diretorio
 Clone o projeto com o comando `git clone`:
 
 ```bash
-git clone git@github.com:marcosadrianoti/tb-trybetunes.git
+git clone git@github.com:marcosadrianoti/tb-online-store-group.git
 ```
 
 Acesse o diretório do projeto com o comando `cd`:
 
 ```bash
-cd tb-trybetunes
+cd tb-online-store-group
 ```
 
 Instale as dependências executando:
