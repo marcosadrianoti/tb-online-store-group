@@ -14,21 +14,22 @@ Projeto desenvolvido em grupo durante o curso de Desenvolvimento Web na Trybe. D
 <details>
 <summary><strong> Requisitos do projeto:</strong></summary>
 
-  * Criar as rotas necessárias para a aplicação.
-  * Criar um formulário para identificação.
-  * Criar um componente de cabeçalho.
-  * Criar os links de navegação no cabeçalho.
-  * Criar o formulário para pesquisar artistas.
-  * Fazer a requisição para pesquisar artistas.
-  * Criar a lista de músicas do álbum selecionado.
-  * Criar o mecanismo para adicionar músicas na lista de músicas favoritas.
-  * Fazer a requisição para recuperar as músicas favoritas ao entrar na página do Álbum.
-  * Fazer a requisição para recuperar as músicas favoritas e atualizar a lista após favoritar uma música.
-  * Criar o mecanismo para remover músicas na lista de músicas favoritas.
-  * Requisitos bônus:
-    * Criar a lista de músicas favoritas.
-    * Criar a exibição de perfil.
-    * Criar o formulário de edição de perfil.
+  * Implementar o módulo de acesso à api do Mercado Livre.
+  * Criar uma página de listagem de produtos vazia.
+  * Criar a página do carrinho de compras.
+  * Listar as categorias de produtos disponíveis via API na página principal.
+  * Listar os produtos buscados por termos, com os dados resumidos, associados a esses termos.
+  * Selecionar uma categoria e mostre somente os produtos daquela categoria.
+  * Redirecionar para uma tela com a exibição detalhada ao clicar na exibição resumida de um produto.
+  * Adicionar produtos a partir da tela de listagem de produtos.
+  * Adicionar um produto ao carrinho a partir de sua tela de exibição detalhada.
+  * Visualizar a lista de produtos adicionados ao carrinho em sua página e permita a manipulação da sua quantidade.
+  * Avaliar e comente acerca de um produto em sua tela de exibição detalhada.
+  * Finalizar a compra vendo um resumo dela, preenchendo os seus dados e escolhendo a forma de pagamento.
+  * Requisitos Bônus:
+    * Mostrar junto ao ícone do carrinho a quantidade de produtos dentro dele, em todas as telas em que ele aparece.
+    * Limitar a quantidade de produtos adicionados ao carrinho pela quantidade disponível em estoque
+    * Mostrar quais produtos tem o frete grátis.
 </details>
   
 ## Rodando o projeto localmente
